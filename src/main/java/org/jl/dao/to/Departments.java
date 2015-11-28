@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Table(name = "DEPARTMENTS")
 public class Departments implements java.io.Serializable {
 
-	private short departmentId;
+	private int departmentId;
 	private Employees employees;
 
 	private String departmentName;
@@ -30,12 +30,12 @@ public class Departments implements java.io.Serializable {
 	public Departments() {
 	}
 
-	public Departments(short departmentId, String departmentName) {
+	public Departments(int departmentId, String departmentName) {
 		this.departmentId = departmentId;
 		this.departmentName = departmentName;
 	}
 
-	public Departments(short departmentId, Employees employees,
+	public Departments(int departmentId, Employees employees,
 			 String departmentName,
 			 Set<Employees> employeeses) {
 		this.departmentId = departmentId;
@@ -48,11 +48,11 @@ public class Departments implements java.io.Serializable {
 
 	@Id
 	@Column(name = "DEPARTMENT_ID", unique = true, nullable = false, precision = 4, scale = 0)
-	public short getDepartmentId() {
+	public int getDepartmentId() {
 		return this.departmentId;
 	}
 
-	public void setDepartmentId(short departmentId) {
+	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
 

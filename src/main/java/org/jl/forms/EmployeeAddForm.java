@@ -1,47 +1,66 @@
 package org.jl.forms;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.jl.dao.to.Departments;
+import org.jl.dao.to.Jobs;
 
 public class EmployeeAddForm {
 
-	@NotBlank(message="Please enter employee id ")
-	private String employeeId;
-	@NotBlank(message="Please enter email ")
+	
+	private int employeeId;
+	
 	
 	
 	private String email;
-	@NotBlank(message="Please enter password ")
+	
 	private String password;
 	
 	
 	private String firstName;
-	@NotBlank(message="Please enter last name ")
+	
 	private String lastName;
 	
 	private String phoneNumber;
 	
 	private Date hireDate;
-	@NotBlank(message="Please enter Job Id ")
-	private String jobId;
+	
+	private Jobs jobId;
 	
 	private String salary;
-	private String comPct;
+	private String commissionPct;
 	private String mgrId;
-	private String depId;
+	private Departments depId;
+	private List<Jobs> jobTitList;
+	private List<Departments> deptList;
 	
 	
-	
-	
-	public String getEmployeeId() {
+	public List<Jobs> getJobTitList() {
+		return jobTitList;
+	}
+
+	public void setJobTitList(List<Jobs> jobTitList) {
+		this.jobTitList = jobTitList;
+	}
+
+	public List<Departments> getDeptList() {
+		return deptList;
+	}
+
+	public void setDeptList(List<Departments> deptList) {
+		this.deptList = deptList;
+	}
+
+	public int getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(String employeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 
@@ -77,11 +96,11 @@ public class EmployeeAddForm {
 		this.hireDate = hireDate;
 	}
 
-	public String getJobId() {
+	public Jobs getJobId() {
 		return jobId;
 	}
 
-	public void setJobId(String jobId) {
+	public void setJobId(Jobs jobId) {
 		this.jobId = jobId;
 	}
 
@@ -93,12 +112,14 @@ public class EmployeeAddForm {
 		this.salary = salary;
 	}
 
-	public String getComPct() {
-		return comPct;
+	
+
+	public String getCommissionPct() {
+		return commissionPct;
 	}
 
-	public void setComPct(String comPct) {
-		this.comPct = comPct;
+	public void setCommissionPct(String commissionPct) {
+		this.commissionPct = commissionPct;
 	}
 
 	public String getMgrId() {
@@ -109,11 +130,11 @@ public class EmployeeAddForm {
 		this.mgrId = mgrId;
 	}
 
-	public String getDepId() {
+	public Departments getDepId() {
 		return depId;
 	}
 
-	public void setDepId(String depId) {
+	public void setDepId(Departments depId) {
 		this.depId = depId;
 	}
 

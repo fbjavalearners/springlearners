@@ -1,6 +1,7 @@
 package org.jl.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.jl.dao.EmployeesDAO;
 import org.jl.dao.to.Employees;
@@ -21,7 +22,7 @@ public class EmployeeSerImpl implements EmployeeService{
 	}
 	
 	public List<Jobs> getAllJobs() {
-		return dao.getAllJobs();
+		return dao.getAllJobTitles();
 	}
 
 }

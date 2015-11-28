@@ -89,6 +89,13 @@ public class Jobs implements java.io.Serializable {
 		this.employeeses = employeeses;
 	}
 
+	@Override
+	public String toString() {
+		return "Jobs [jobId=" + jobId + ", jobTitle=" + jobTitle
+				+ ", minSalary=" + minSalary + ", maxSalary=" + maxSalary
+				+ ", employeeses=" + employeeses + "]";
+	}
+
 	
 
 }

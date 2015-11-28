@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.jl.dao.EmployeesDAO;
@@ -15,7 +16,7 @@ import org.jl.dao.to.Employees;
 import org.jl.forms.LoginForm;
 import org.jl.service.LoginService;
 
-
+@SessionAttributes("loginuser")
 @Controller
 public class LoginController {
 
@@ -52,7 +53,7 @@ public class LoginController {
 		 ModelAndView model = new ModelAndView();
            
          Employees emp = loginSer.isValidUser(loginForm);
-         System.out.println(empDAO.getAllJobs());
+       
          if(emp == null ){
         	  model.setViewName("loginForm");
         	  model.addObject("message", "Invalid User");

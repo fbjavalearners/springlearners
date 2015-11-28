@@ -11,9 +11,22 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
   <context:annotation-config />
     <context:component-scan base-package="org.jl" />
-  <mvc:annotation-driven />
+  <mvc:annotation-driven conversion-service="conversionService"/>
 
-    
+    <bean id="conversionService"
+            class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="org.jl.formatters.JobFormatter">
+                   
+                </bean>
+                 <bean class="org.jl.formatters.DepFormatter">
+                   
+                </bean>
+            </set>
+        </property>
+        
+    </bean>
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/pages/" />
 		<property name="suffix" value=".jsp" />

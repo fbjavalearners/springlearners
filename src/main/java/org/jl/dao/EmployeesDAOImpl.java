@@ -15,7 +15,9 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
+import org.hibernate.transform.AliasToBeanConstructorResultTransformer;
 import org.hibernate.transform.AliasToBeanResultTransformer;
+import org.hibernate.transform.Transformers;
 import org.jl.dao.to.*;
 import org.jl.forms.JobForm;
 
@@ -36,17 +38,15 @@ public class EmployeesDAOImpl implements EmployeesDAO{
 		
 	}
 
-	public List getAllJobs() {
+	public List getAllJobTitles() {
 		
 		    	DetachedCriteria cri =  	DetachedCriteria.forClass(Jobs.class);
 		    	
 		    	  ProjectionList projList = Projections.projectionList();
-			         projList.add(Projections.property("jobId"));
-			         projList.add(Projections.property("jobTitle"));
+			         projList.add(Projections.property("jobId"),"jobId");
+			         projList.add(Projections.property("jobTitle"),"jobTitle");
 			         cri.setProjection(Projections.distinct(projList));
-		         cri.setResultTransformer(new AliasToBeanResultTransformer(
-		                 Jobs.class));
-		        
+		         cri.setResultTransformer(Transformers.aliasToBean(Jobs.class));
 		         
 		       
 		         
@@ -61,7 +61,31 @@ public class EmployeesDAOImpl implements EmployeesDAO{
 		        return hibernateTemplate.findByCriteria(cri);
 		
 	}
+	public List getAllDepartments() {
+		
+    	DetachedCriteria cri =  	DetachedCriteria.forClass(Departments.class);
+    	
+    	  ProjectionList projList = Projections.projectionList();
+	         projList.add(Projections.property("departmentId"),"departmentId");
+	         projList.add(Projections.property("departmentName"),"departmentName");
+	         cri.setProjection(Projections.distinct(projList));
+         cri.setResultTransformer(Transformers.aliasToBean(Departments.class));
+         
+       
+         
+         
+         
+         
+         
+         
+         
+         
+        System.out.println("Entered getAllDepartments ");
+        return hibernateTemplate.findByCriteria(cri);
 
-	
+}
+	public void addEmployee(Employees emp ){
+		hibernateTemplate.save(emp);
+	}
 
 }

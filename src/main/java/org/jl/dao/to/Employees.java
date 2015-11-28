@@ -29,7 +29,7 @@ public class Employees implements java.io.Serializable {
 	private int employeeId;
 	private Jobs jobs;
 	private Departments departments;
-	private Employees employees;
+	private Employees manager;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -37,8 +37,6 @@ public class Employees implements java.io.Serializable {
 	private Date hireDate;
 	private BigDecimal salary;
 	private BigDecimal commissionPct;
-	private Set<Employees> employeeses = new HashSet<Employees>(0);
-	private Set<Departments> departmentses = new HashSet<Departments>(0);
 	private String password;
 
 	
@@ -63,7 +61,7 @@ public class Employees implements java.io.Serializable {
 		this.employeeId = employeeId;
 		this.jobs = jobs;
 		this.departments = departments;
-		this.employees = employees;
+		this.manager = employees;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -71,8 +69,7 @@ public class Employees implements java.io.Serializable {
 		this.hireDate = hireDate;
 		this.salary = salary;
 		this.commissionPct = commissionPct;
-		this.employeeses = employeeses;
-		this.departmentses = departmentses;
+	
 		
 	}
 
@@ -109,11 +106,11 @@ public class Employees implements java.io.Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MANAGER_ID")
 	public Employees getEmployees() {
-		return this.employees;
+		return this.manager;
 	}
 
 	public void setEmployees(Employees employees) {
-		this.employees = employees;
+		this.manager = employees;
 	}
 
 	@Column(name = "FIRST_NAME", length = 20)

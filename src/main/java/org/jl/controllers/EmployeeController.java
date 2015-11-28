@@ -63,7 +63,7 @@ public class EmployeeController {
 		emps.setHireDate(form.getHireDate());
 		emps.setDepartments(form.getDepId());
 		emps.setJobs(form.getJobId());
-		System.out.println("Jobs is " +form.getJobId());
+		//System.out.println("Jobs is " +form.getJobId());
 		
 		 ModelAndView model = new ModelAndView("addEmployeeSuccess");
 		 empDAO.addEmployee(emps);

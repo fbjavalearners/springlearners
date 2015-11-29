@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.support.SessionStatus;
 import org.jl.dao.EmployeesDAO;
 import org.jl.dao.to.Employees;
 import org.jl.forms.LoginForm;
@@ -26,10 +27,10 @@ public class LoginController {
 	    private EmployeesDAO empDAO;
 	 @RequestMapping(value="/login",method=RequestMethod.GET)
 	 
-	     public ModelAndView displayLogin()
+	     public ModelAndView displayLogin(SessionStatus status)
 	 
 	     {
-	 
+	        status.setComplete();
 	         ModelAndView model = new ModelAndView("loginForm");
 	 
 	         LoginForm loginForm = new LoginForm();
@@ -39,6 +40,22 @@ public class LoginController {
 	         return model;
 	 
 	     }
+	 @RequestMapping(value="/logout",method=RequestMethod.GET)
+	 
+     public ModelAndView logout(SessionStatus status )
+ 
+     {
+ 
+		 status.setComplete();
+         ModelAndView model = new ModelAndView("loginForm");
+ 
+         LoginForm loginForm = new LoginForm();
+ 
+         model.addObject("loginForm", loginForm);
+ 
+         return model;
+ 
+     }
 	 @RequestMapping(value="/login",method=RequestMethod.POST)
 	 
      public ModelAndView executeLogin( @Valid @ModelAttribute("loginForm")  LoginForm loginForm,

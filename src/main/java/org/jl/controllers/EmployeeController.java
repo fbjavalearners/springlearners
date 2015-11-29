@@ -17,9 +17,12 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.jl.dao.to.Departments;
+import org.jl.dao.to.EmployeeAudit;
 import org.jl.dao.to.Employees;
 import org.jl.dao.to.Jobs;
 import org.jl.forms.EmployeeAddForm;
+import org.jl.service.EmployeeService;
+import org.jl.service.LoginService;
 
 
 @SessionAttributes("loginuser")
@@ -28,12 +31,13 @@ import org.jl.forms.EmployeeAddForm;
 public class EmployeeController {
 
 	
+	 
 	 @Autowired
-	    private EmployeesDAO empDAO;
+	    private EmployeeService empSer;
 	 @RequestMapping(value = "/getAllEmployees", method = RequestMethod.GET)
 	public String getAllEmployees(Model model) {
 	
-     List<Employees> empList = empDAO.getAllEmployees();
+     List<Employees> empList = empSer.getAllEmployees();
      model.addAttribute("empList", empList);
      System.out.println("Entered getAllEmployees " );
      //System.out.println(empDAO());
@@ -44,8 +48,8 @@ public class EmployeeController {
 		public ModelAndView displayAddEmployeeForm(@ModelAttribute("loginuser") Employees emp) {
 		
 		 ModelAndView model = new ModelAndView("displayEmployeeAddForm");
-		 List<Jobs>  jobTitList = empDAO.getAllJobTitles();
-		 List<Departments>  depList = empDAO.getAllDepartments();
+		 List<Jobs>  jobTitList = empSer.getAllJobTitles();
+		 List<Departments>  depList = empSer.getAllDepartments();
 	     EmployeeAddForm empform = new EmployeeAddForm();
 	     empform.setJobTitList(jobTitList);
 	     empform.setDeptList(depList);
@@ -56,17 +60,21 @@ public class EmployeeController {
 	 @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
 		public ModelAndView addEmployeeForm(@ModelAttribute("loginuser") Employees emp,@ModelAttribute("empaddform") EmployeeAddForm form) {
 		Employees emps = new Employees();
-		emps.setFirstName(form.getFirstName());
-		emps.setLastName(form.getLastName());
+		emps.setFirstName(form.getfName());
+		emps.setLastName(form.getlName());
 		emps.setEmployeeId(form.getEmployeeId());
 		emps.setEmail(form.getEmail());
 		emps.setHireDate(form.getHireDate());
 		emps.setDepartments(form.getDepId());
 		emps.setJobs(form.getJobId());
+		emps.setPassword(form.getPassword());
 		//System.out.println("Jobs is " +form.getJobId());
-		
+		EmployeeAudit audit = new EmployeeAudit();
+		audit.setAddedby(emp.getFirstName()+emp.getLastName());
+		audit.setAddeddate(new java.util.Date());
+		audit.setAudid(new Integer(0));
 		 ModelAndView model = new ModelAndView("addEmployeeSuccess");
-		 empDAO.addEmployee(emps);
+		 empSer.addEmployee(emps,audit);
 		 System.out.println("Entered addEmployee ");
 		 return model;
 		} 

@@ -22,9 +22,9 @@ public class EmployeeAddForm {
 	private String password;
 	
 	
-	private String firstName;
+	private String fName;
 	
-	private String lastName;
+	private String lName;
 	
 	private String phoneNumber;
 	
@@ -64,20 +64,22 @@ public class EmployeeAddForm {
 		this.employeeId = employeeId;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	
+
+	public String getfName() {
+		return fName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setfName(String fName) {
+		this.fName = fName;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getlName() {
+		return lName;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setlName(String lName) {
+		this.lName = lName;
 	}
 
 	public String getPhoneNumber() {

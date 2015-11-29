@@ -24,12 +24,12 @@
         <td><form:input path="employeeId" /></td>
     </tr>
     <tr>
-        <td><form:label path="firstName">First Name</form:label></td>
-        <td><form:input path="firstName" /></td>
+        <td><form:label path="fName">First Name</form:label></td>
+        <td><form:input path="fName" /></td>
     </tr>
     <tr>
-        <td><form:label path="lastName">Last Name</form:label></td>
-        <td><form:input path="lastName" /></td>
+        <td><form:label path="lName">Last Name</form:label></td>
+        <td><form:input path="lName" /></td>
     </tr>
      <tr>
         <td><form:label path="email">Email</form:label></td>

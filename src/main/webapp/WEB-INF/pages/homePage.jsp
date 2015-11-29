@@ -11,6 +11,7 @@
      <table>
        <tr><td><a href="./getAllEmployees">All Employees List</a></td></tr>
        <tr><td><a href="./displayAddEmployee">Add Employee</a></td></tr>
+       <tr><td><a href="./logout">Logout</a></td></tr>
      </table>
      
      
